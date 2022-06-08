@@ -238,7 +238,8 @@ class ArchiveAPI:
         response = requests.request(
             "GET", url,
             headers=self.session.header,
-            params=request.dict())
+            params=request.dict(),
+            verify=self.session.verify)
         if response.status_code != 200:
             raise ArlulaSessionError(response.text)
         else:
@@ -256,7 +257,8 @@ class ArchiveAPI:
             "POST",
             url,
             data=request.dumps(),
-            headers=self.session.header)
+            headers=self.session.header,
+            verify=self.session.verify)
 
         if response.status_code != 200:
             raise ArlulaSessionError(response.text)

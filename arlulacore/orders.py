@@ -111,7 +111,8 @@ class OrdersAPI:
             "GET",
             url,
             headers=self.session.header,
-            params=querystring)
+            params=querystring,
+            verify=self.session.verify)
 
         if response.status_code != 200:
             raise ArlulaSessionError(response.text)
@@ -128,7 +129,8 @@ class OrdersAPI:
         response = requests.request(
             "GET",
             url,
-            headers=self.session.header)
+            headers=self.session.header,
+            verify=self.session.verify)
 
         if response.status_code != 200:
             raise ArlulaSessionError(response.text)
@@ -163,7 +165,8 @@ class OrdersAPI:
             url,
             headers=self.session.header,
             params=querystring,
-            stream=True)
+            stream=True,
+            verify=self.session.verify)
 
         total = response.headers.get('content-length')
 
@@ -213,6 +216,7 @@ class OrdersAPI:
             "GET",
             url,
             headers=self.session.header,
-            params=querystring)
+            params=querystring,
+            verify=self.session.verify)
         
         return response.content

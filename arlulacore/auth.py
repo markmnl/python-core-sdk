@@ -28,8 +28,8 @@ class Session:
                  key: str,
                  secret: str,
                  user_agent: typing.Optional[str] = def_ua,
-                 url: typing.Optional[str] = "https://api.arlula.com"
-                 ):
+                 url: typing.Optional[str] = "https://api.arlula.com",
+                 verify: bool = True):
         # Encode the key and secret
         def atob(x): return x.encode('utf-8')
         self.token = base64.b64encode(atob(
@@ -41,6 +41,7 @@ class Session:
         }
         self.baseURL = url
         self.validate_creds()
+        self.verify = verify
 
     # Check the credentials are valid
     def validate_creds(self):
